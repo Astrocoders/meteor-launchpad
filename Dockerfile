@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Jeremy Shimko <jeremy.shimko@gmail.com>
+MAINTAINER Astrocoders
 
 RUN groupadd -r node && useradd -m -g node node
 
@@ -28,7 +28,7 @@ ONBUILD ARG APT_GET_INSTALL
 ONBUILD ENV APT_GET_INSTALL $APT_GET_INSTALL
 
 ONBUILD ARG NODE_VERSION
-ONBUILD ENV NODE_VERSION ${NODE_VERSION:-4.8.4}
+ONBUILD ENV NODE_VERSION ${NODE_VERSION:-8.8.1}
 
 ONBUILD ARG NPM_TOKEN
 ONBUILD ENV NPM_TOKEN $NPM_TOKEN
@@ -58,6 +58,7 @@ ONBUILD RUN cd $APP_SOURCE_DIR && \
   $BUILD_SCRIPTS_DIR/install-node.sh && \
   $BUILD_SCRIPTS_DIR/install-phantom.sh && \
   $BUILD_SCRIPTS_DIR/install-graphicsmagick.sh && \
+  $BUILD_SCRIPTS_DIR/set-timezone.sh && \
   $BUILD_SCRIPTS_DIR/install-mongo.sh && \
   $BUILD_SCRIPTS_DIR/install-meteor.sh && \
   $BUILD_SCRIPTS_DIR/build-meteor.sh && \

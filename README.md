@@ -1,12 +1,16 @@
-[![Circle CI](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master.svg?style=svg)](https://circleci.com/gh/jshimko/meteor-launchpad/tree/master)
 # Meteor Launchpad - Base Docker Image for Meteor Apps
+
+### Important
+
+This is a fork from the awesome work of jshimko on [his repo](https://github.com/jshimko/meteor-launchpad)
+We needed some a bit more configs
 
 ### Build
 
 Add the following to a `Dockerfile` in the root of your app:
 
 ```Dockerfile
-FROM jshimko/meteor-launchpad:latest
+FROM astrocoders/meteor-launchpad:latest
 ```
 
 Then you can build the image with:
@@ -55,7 +59,7 @@ docker run -d \
 
 ### Build Options
 
-Meteor Launchpad supports setting custom build options in one of two ways.  You can either create a launchpad.conf config file in the root of your app or you can use [Docker build args](https://docs.docker.com/engine/reference/builder/#arg).  The currently supported options are to install PhantomJS, GraphicsMagick, MongoDB, or any list of `apt-get` dependencies (Meteor Launchpad is built on `debian:jesse`).  
+Meteor Launchpad supports setting custom build options in one of two ways.  You can either create a launchpad.conf config file in the root of your app or you can use [Docker build args](https://docs.docker.com/engine/reference/builder/#arg).  The currently supported options are to install PhantomJS, GraphicsMagick, MongoDB, or any list of `apt-get` dependencies (Meteor Launchpad is built on `debian:jesse`).
 
 If you choose to install Mongo, you can use it by _not_ supplying a `MONGO_URL` when you run your app container.  The startup script will then start Mongo inside the container and tell your app to use it.  If you _do_ supply a `MONGO_URL`, Mongo will not be started inside the container and the external database will be used instead.
 
@@ -109,7 +113,7 @@ docker build --build-arg NPM_TOKEN="<your token>" -t myorg/myapp:latest .
 You can optionally avoid downloading Meteor every time when building regularly in development.  Add the following to your Dockerfile instead...
 
 ```Dockerfile
-FROM jshimko/meteor-launchpad:devbuild
+FROM astrocoders/meteor-launchpad:devbuild
 ```
 
 This isn't recommended for your final production build because it creates a much larger image, but it's a bit of a time saver when you're building often in development.  The first build you run will download/install Meteor and then every subsequent build will be able to skip that step and just build the app.
@@ -149,7 +153,7 @@ If you'd like to create a custom build for some reason, you can use the `build.s
 First, make any changes you want, then to create your custom build:
 
 ```sh
-# builds as jshimko/meteor-launchpad:latest
+# builds as astrocoders/meteor-launchpad:latest
 ./build.sh
 ```
 

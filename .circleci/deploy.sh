@@ -9,7 +9,7 @@
 
 ## Optional environment variables
 #
-# $DOCKER_IMAGE_NAME - use to push the build to your own Docker Hub account (Default: jshimko/meteor-launchpad)
+# $DOCKER_IMAGE_NAME - use to push the build to your own Docker Hub account (Default: astrocoders/meteor-launchpad)
 
 # Master branch versioned deployment (only runs when a version number git tag exists - syntax: "v1.2.3")
 if [[ "$CIRCLE_BRANCH" == "master" ]]; then
@@ -19,7 +19,7 @@ if [[ "$CIRCLE_BRANCH" == "master" ]]; then
   if [[ "$VERSION" ]]; then
     set -e
 
-    IMAGE_NAME=${DOCKER_IMAGE_NAME:-"jshimko/meteor-launchpad"}
+    IMAGE_NAME=${DOCKER_IMAGE_NAME:-"astrocoders/meteor-launchpad"}
 
     # create a versioned tags
     docker tag $IMAGE_NAME:devbuild $IMAGE_NAME:$VERSION-devbuild

@@ -18,7 +18,7 @@ else
   sed -i.bak "s/RELEASE=.*/RELEASE=\"$METEOR_VERSION\"/g" /tmp/install_meteor.sh
 
   # replace tar command with bsdtar in the install script (bsdtar -xf "$TARBALL_FILE" -C "$INSTALL_TMPDIR")
-  # https://github.com/jshimko/meteor-launchpad/issues/39
+  # https://github.com/astrocoders/meteor-launchpad/issues/39
   sed -i.bak "s/tar -xzf.*/bsdtar -xf \"\$TARBALL_FILE\" -C \"\$INSTALL_TMPDIR\"/g" /tmp/install_meteor.sh
 
   # install
