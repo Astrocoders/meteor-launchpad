@@ -2,6 +2,21 @@
 
 set -e
 
+if [[ "$METEOR_SETTINGS_FILE" ]]; then
+  echo "Settings meteor settings from secret"
+  export METEOR_SETTINGS=$(cat $METEOR_SETTINGS_FILE)
+fi
+
+if [[ "$MONGO_URL_FILE" ]]; then
+  echo "Settings mongo url from secret"
+  export MONGO_URL=$(cat $MONGO_URL_FILE)
+fi
+
+if [[ "$MONGO_OPLOG_URL_FILE" ]]; then
+  echo "Settings mongo oplog url from secret"
+  export MONGO_OPLOG_URL=$(cat $MONGO_OPLOG_URL_FILE)
+fi
+
 # try to start local MongoDB if no external MONGO_URL was set
 if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
   if hash mongod 2>/dev/null; then

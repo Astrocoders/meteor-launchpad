@@ -1,7 +1,13 @@
-## v2.2.3
+## v2.3.1
 
 - Source TZ from launchpad.conf if present
 - Add --force on npm purge
+
+## v2.3.0
+
+- Updates for Meteor 1.6 support
+- Node 8.9.0
+- Mongo 3.4.10
 
 ## v2.2.2
 
@@ -43,7 +49,7 @@
 ## v2.0.3
 
 - add `apt-transport-https` for rare issue (most likely caused by apt source redirects) (#50)
-- Node 8.8.1
+- Node 4.8.4
 
 ## v2.0.2
 
@@ -56,7 +62,7 @@
 
 ```sh
 # to skip installing Mongo, Phantom, or Graphicsmagick
-# when using astrocoders/meteor-launchpad:devbuild
+# when using jshimko/meteor-launchpad:devbuild
 
 docker build \
   --build-arg INSTALL_MONGO=false \
@@ -79,7 +85,7 @@ docker build \
 
 - allow setting TOOL_NODE_FLAGS for Meteor build at image build time (fixes #41)
 
-Example usage:
+Example usage:  
 ```
 docker build --build-arg TOOL_NODE_FLAGS="--max-old-space-size=2048" -t myorg/myapp:latest .
 ```
@@ -137,6 +143,6 @@ docker build --build-arg TOOL_NODE_FLAGS="--max-old-space-size=2048" -t myorg/my
 
 ## v1.0.0
 
-- Add Docker build versioning to CI build.  Every tag in the form `vX.X.X` will now create and push a new build on CircleCI and update the `:latest` tag. You can now use `astrocoders/meteor-launchpad:latest` to always use the latest, or you can pin a specific version with `astrocoders/meteor-launchpad:v1.0.0`.  See all available builds here: https://hub.docker.com/r/astrocoders/meteor-launchpad/tags/
+- Add Docker build versioning to CI build.  Every tag in the form `vX.X.X` will now create and push a new build on CircleCI and update the `:latest` tag. You can now use `jshimko/meteor-launchpad:latest` to always use the latest, or you can pin a specific version with `jshimko/meteor-launchpad:v1.0.0`.  See all available builds here: https://hub.docker.com/r/jshimko/meteor-launchpad/tags/
 
 This is also the last/only version of Meteor Launchpad to support Meteor 1.4.2.  The [issue with using Meteor commands as root](https://github.com/meteor/meteor/issues/7959) introduced in 1.4.2 caused a big problem for this image because it meant the build scripts would _only_ work for Meteor 1.4.2 or later (long story).  [This fix in 1.4.2.1](https://github.com/meteor/meteor/pull/7975/commits/e4acc36f63f98243237b5e6b3e46b083822b95fd) addresses that problem and now allows this image to support any version of Meteor >=1.3 (except 1.4.2 - which you should definitely upgrade if you are using it).
