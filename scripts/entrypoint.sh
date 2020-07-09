@@ -17,6 +17,11 @@ if [[ "$MONGO_OPLOG_URL_FILE" ]]; then
   export MONGO_OPLOG_URL=$(cat $MONGO_OPLOG_URL_FILE)
 fi
 
+if [[ "$REDIS_URI_FILE" ]]; then
+  echo "Settings redis uri from secret"
+  export REDIS_URI=$(cat $REDIS_URI_FILE)
+fi
+
 # try to start local MongoDB if no external MONGO_URL was set
 if [[ "${MONGO_URL}" == *"127.0.0.1"* ]]; then
   if hash mongod 2>/dev/null; then
